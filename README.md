@@ -1,5 +1,7 @@
 # Hello, and welcome to my application 'Meet' developed by me, webcodejunkie!
 
+Beginner Web Developer trying to make sense of what I learn
+
 # Here's a quick description on this project and what I aim for this application to provide.
 
 To build a serverless, progressive web application (PWA) with React using a
