@@ -39,3 +39,5 @@ that I know what events are organized in which city.
 ## This is what I'll be using in the development aspect
 
 * React
+
+## Mock ups for how the application will work will be provided soon!
