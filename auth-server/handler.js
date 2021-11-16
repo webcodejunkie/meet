@@ -1,4 +1,5 @@
 const { google } = require("googleapis");
+const { resultingClientExists } = require("workbox-core/_private");
 const OAuth2 = google.auth.OAuth2;
 const calendar = google.calendar("v3");
 
@@ -23,6 +24,8 @@ const oAuth2Client = new google.auth.OAuth2(
   redirect_uris[0]
 );
 
+// exported function to get the authorized URL
+
 module.exports.getAuthURL = async () => {
 
   const authUrl = oAuth2Client.generateAuthUrl({
@@ -34,7 +37,7 @@ module.exports.getAuthURL = async () => {
   return {
     statusCode: 200,
     headers: {
-      "Acess-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify({
       authUrl: authUrl,
@@ -42,7 +45,10 @@ module.exports.getAuthURL = async () => {
   };
 };
 
-module.exports.getAcessToken = async (event) => {
+
+// exported module function that'll give an token
+
+module.exports.getAccessToken = async (event) => {
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
     client_secret,
@@ -67,6 +73,9 @@ module.exports.getAcessToken = async (event) => {
       // Respond with OAuth token
       return {
         statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify(token),
       };
     })
@@ -79,3 +88,53 @@ module.exports.getAcessToken = async (event) => {
       };
     });
 };
+
+// exported function that gets events
+module.exports.getCalendarEvents = async (event) => {
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    calendar_id,
+    redirect_uris[0]
+  );
+
+  const access_token = decodeURIComponent(`${event.pathParameters.token}`);
+
+  oAuth2Client.setCredentials({ access_token });
+
+  return new Promise((reject, resolve) => {
+    calendar.events.list(
+      {
+        calendarId: calendar_id,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: "startTime",
+      },
+      (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      }
+    )
+  })
+    .then((results) => {
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ events: results.data.items }),
+      }
+    })
+    .catch((err) => {
+      // Handle error
+      console.error(err);
+      return {
+        statusCode: 500,
+        body: JSON.stringify(err),
+      };
+    })
+}
