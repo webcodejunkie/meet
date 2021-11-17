@@ -1,5 +1,5 @@
 const { google } = require("googleapis");
-const { resultingClientExists } = require("workbox-core/_private");
+
 const OAuth2 = google.auth.OAuth2;
 const calendar = google.calendar("v3");
 
@@ -21,8 +21,7 @@ const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
 const oAuth2Client = new google.auth.OAuth2(
   client_id,
   client_secret,
-  redirect_uris[0],
-  calendar_id
+  redirect_uris[0]
 );
 
 // exported function to get the authorized URL
@@ -95,11 +94,10 @@ module.exports.getCalendarEvents = async (event) => {
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
     client_secret,
-    calendar_id,
     redirect_uris[0]
   );
 
-  const access_token = decodeURIComponent(`${event.pathParameters.token}`);
+  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
 
   oAuth2Client.setCredentials({ access_token });
 
@@ -119,7 +117,7 @@ module.exports.getCalendarEvents = async (event) => {
           resolve(response);
         }
       }
-    )
+    );
   })
     .then((results) => {
       return {
