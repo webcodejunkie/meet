@@ -3,3 +3,8 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+import Enyzme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
+
+Enyzme.configure({ adapter: new Adapter() });
