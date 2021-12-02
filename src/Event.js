@@ -6,38 +6,26 @@ class Event extends Component {
     isCollasped: true
   }
 
-  eventDetails = () => {
-    if (this.state.isCollasped === true) {
-      this.setState({
-        isCollasped: false
-      });
-    } else {
-      this.setState({
-        isCollasped: true
-      });
-    }
+  handleClick = () => {
+    this.setState({
+      isCollasped: !this.state.isCollasped
+    });
   }
 
   render() {
     const { event } = this.props;
-
+    const { isCollasped } = this.state
     return (
       <div className="event">
-        {this.state.isCollasped === false && (
-          <p>{event.description}</p>
-        )}
-
-        {this.state.isCollasped === true && (
-          <button className="show-button" onClick={this.eventDetails}>
-            Show Details
-          </button>
-        )}
-
-        {this.state.isCollasped === false && (
-          <button className="close-button" onClick={this.eventDetails}>
-            Close Details
-          </button>
-        )}
+        {!isCollasped &&
+          <div className={`${this.state.isCollasped ? 'hide' : 'show'}`}>
+            <h3>Details About Event</h3>
+            <p className='event-description'></p>
+          </div>
+        }
+        <button className={`${this.state.isCollasped ? 'show' : 'hide'}-details`} onClick={this.handleClick}>
+          {isCollasped ? 'Show Details' : 'Hide Details'}
+        </button>
       </div>
     );
   }

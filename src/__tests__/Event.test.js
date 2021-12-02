@@ -9,15 +9,31 @@ describe('<Event /> component', () => {
     EventWrapper = shallow(<Event />);
   });
 
-  test('test if details of event are closed', () => {
+  test('test if element is collasped by default', () => {
+    EventWrapper.setState({
+      isCollasped: true
+    });
     expect(EventWrapper.state('isCollasped')).toBe(true);
-  });
+  })
 
   test('test if details of event are opened', () => {
-    EventWrapper.find('.close-button').simulate('click', {
-      target: { value: 'false' }
-    })
+    EventWrapper.find(`${'.show-details'}`).simulate('click');
     expect(EventWrapper.state('isCollasped')).toBe(false);
   });
+
+  test('test if details element is rendered', () => {
+    EventWrapper.setState({
+      isCollasped: false
+    });
+    expect(EventWrapper.find('.event-description')).toHaveLength(1);
+  });
+
+  test('test if you click to return to default state to hide', () => {
+    EventWrapper.find(`${'.hide-details'}`).simulate('click');
+    EventWrapper.setState({
+      isCollasped: true
+    });
+    expect(EventWrapper.state('isCollasped')).toBe(true);
+  })
 
 });
