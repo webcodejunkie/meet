@@ -13,14 +13,18 @@ class Event extends Component {
   }
 
   render() {
-    const { event } = this.props;
     const { isCollasped } = this.state
+    const { event } = this.props;
     return (
       <div className="event">
+        <h3>Event</h3>
+        <p>{event.location}</p>
+        <p>{event.summary}</p>
         {!isCollasped &&
           <div className={`${this.state.isCollasped ? 'hide' : 'show'}`}>
-            <h3>Details About Event</h3>
-            <p className='event-description'></p>
+            <h4>Description</h4>
+            <p className='event-description'>{event.description}</p>
+            <div>Created: <span>{event.created}</span></div>
           </div>
         }
         <button className={`${this.state.isCollasped ? 'show' : 'hide'}-details`} onClick={this.handleClick}>

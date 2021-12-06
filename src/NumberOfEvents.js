@@ -1,5 +1,12 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
 import Select from 'react-select';
+
+// the different number events that will be shown to be selected, ranging from fixed numbers
+const options = [
+  { value: '32', label: '32 Events' },
+  { value: '16', label: '16 Events' },
+  { value: '8', label: '8 Events' }
+];
 
 class NumberOfEvents extends Component {
 
@@ -13,12 +20,6 @@ class NumberOfEvents extends Component {
   }
 
   render() {
-    // the different number events that will be shown to be selected, ranging from fixed numbers
-    const options = [
-      { numOfEvents: '32' },
-      { numOfEvents: '16' },
-      { numOfEvents: '8' }
-    ];
 
     const { selectedOption } = this.state;
 
