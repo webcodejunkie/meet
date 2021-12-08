@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { extractLocations, getEvents } from './api';
 
 import './App.css';
+import './nprogress.css';
 
 import EventList from './EventList';
 import CitySearch from './CitySearch';

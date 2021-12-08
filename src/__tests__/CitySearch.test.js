@@ -50,6 +50,7 @@ describe('<CitySearch /> component', () => {
     const locations = extractLocations(mockData);
     CitySearchWrapper.setState({ suggestions: locations });
     const suggestions = CitySearchWrapper.state('suggestions');
+
     expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1);
     for (let i = 0; i < suggestions.length; i += 1) {
       expect(CitySearchWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i]);
@@ -58,7 +59,7 @@ describe('<CitySearch /> component', () => {
 
   test('selecting a suggestion should change query state', () => {
     CitySearchWrapper.setState({
-      query: 'London'
+      query: 'Berlin'
     });
     const suggestions = CitySearchWrapper.state('suggestions');
     CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
