@@ -27,7 +27,8 @@ node_modules
 jspm_packages
 
 # Serverless directories
-.serverless
+auth-server/.serverless
+auth-server/node_modules
 
 # enviroment variables
 config.json
