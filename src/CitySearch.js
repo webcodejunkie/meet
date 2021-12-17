@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
+
+import './css/CitySearch.css';
 
 class CitySearch extends Component {
 
@@ -31,7 +34,8 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
-        <input
+        <h4>Search for nearby cities</h4>
+        <Form.Control
           className="city"
           placeholder="search city"
           type="text"
@@ -44,6 +48,7 @@ class CitySearch extends Component {
         <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
           {this.state.suggestions.map((suggestion) => (
             <li
+              className='suggestionList'
               key={suggestion}
               onClick={() => this.handleItemClicked(suggestion)}
             >{suggestion}</li>

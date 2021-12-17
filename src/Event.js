@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Card, Button } from 'react-bootstrap';
+
 class Event extends Component {
 
   state = {
@@ -16,21 +18,21 @@ class Event extends Component {
     const { isCollasped } = this.state
     const { event } = this.props;
     return (
-      <div className="event">
-        <h3>Event</h3>
-        <p>{event.location}</p>
-        <p>{event.summary}</p>
+      <Card className="event">
+        <Card.Header>Event</Card.Header>
+        <Card.Title>{event.location}</Card.Title>
+        <Card.Text>{event.summary}</Card.Text>
         {!isCollasped &&
           <div className={`${this.state.isCollasped ? 'hide' : 'show'}`}>
-            <h4>Description</h4>
-            <p className='event-description'>{event.description}</p>
-            <div>Created: <span>{event.created}</span></div>
+            <Card.Title>Description</Card.Title>
+            <Card.Text>{event.description}</Card.Text>
+            <Card.Text>Created: <span>{event.created}</span></Card.Text>
           </div>
         }
-        <button className={`${this.state.isCollasped ? 'show' : 'hide'}-details`} onClick={this.handleClick}>
-          {isCollasped ? 'Show Details' : 'Hide Details'}
-        </button>
-      </div>
+        <Button className={`${this.state.isCollasped ? 'show' : 'hide'}-details`} onClick={this.handleClick}>
+          {isCollasped ? 'More About' : 'Close'}
+        </Button>
+      </Card>
     );
   }
 }

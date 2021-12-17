@@ -1,36 +1,24 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
+import Form from 'react-bootstrap/Form';
 
-// the different number events that will be shown to be selected, ranging from fixed numbers
-const options = [
-  { value: '32', label: '32 Events' },
-  { value: '16', label: '16 Events' },
-  { value: '8', label: '8 Events' }
-];
+import './css/NumberOfEvents.css';
+
 
 class NumberOfEvents extends Component {
 
-  // set the state of the select to null by default
-  state = {
-    selectedOption: null,
-  }
-  // function to help update the state for the selected option
-  chooseNumberEvents = (selectedOption) => {
-    this.setState({ selectedOption });
-  }
 
   render() {
 
-    const { selectedOption } = this.state;
-
     return (
       <div>
-        <h3>Choose Number of Events</h3>
-        <Select
-          value={selectedOption}
-          onChange={this.chooseNumberEvents}
-          options={options}
-          className='event-options' />
+        <h5>Filter Events</h5>
+        <Form.Control
+          type='number'
+          value={this.props.numberOfEvents}
+          className='num-of-events'
+          onChange={(e) => this.props.updateNumberOfEvents(e)}
+          placeholder='1-32'
+        />
       </div>
     );
   }

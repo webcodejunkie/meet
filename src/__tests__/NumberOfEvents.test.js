@@ -9,7 +9,7 @@ describe('<NumberOfEvents /> component', () => {
   });
 
   test('test if the select element is rendering', () => {
-    expect(NumberOfEventsWrapper.find('.event-options')).toHaveLength(1);
+    expect(NumberOfEventsWrapper.find('num-of-events')).toHaveLength(1);
   });
 
   test('test by default if number of events is set to default', () => {
