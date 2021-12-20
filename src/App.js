@@ -79,7 +79,7 @@ class App extends Component {
           <section className='overlayHeader'>
             <h1> Welcome to Meet! The Serverless Function, Cloud Computing, Application Build with React! </h1>
             <p>Jump right into the fun! <br /> For more information on how to get started. Visit the Meet GitHub</p>
-            <a target='_blank' href='https://github.com/webcodejunkie/meet'>Meet GitHub</a>
+            <a target='_blank' rel='noreferrer' href='https://github.com/webcodejunkie/meet'>Meet GitHub</a>
           </section>
           <section className='overlayCloseButton'>
             <div className='onExitButton' onClick={this.hideOverlay}>╳</div>

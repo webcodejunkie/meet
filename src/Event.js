@@ -25,7 +25,7 @@ class Event extends Component {
         {!isCollasped &&
           <div className={`${this.state.isCollasped ? 'hide' : 'show'}`}>
             <Card.Title>Description</Card.Title>
-            <Card.Text>{event.description}</Card.Text>
+            <Card.Text className='event-description'>{event.description}</Card.Text>
             <Card.Text>Created: <span>{event.created}</span></Card.Text>
           </div>
         }
