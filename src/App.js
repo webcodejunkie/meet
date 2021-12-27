@@ -8,7 +8,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 
-import { Container } from 'react-bootstrap';
+import { Container, Navbar } from 'react-bootstrap';
 
 class App extends Component {
   state = {
@@ -75,23 +75,64 @@ class App extends Component {
   render() {
     return (
       <Container fluid className='d-flex app'>
+        { /*HEADER*/}
+        <header className='header'>
+          <Navbar bg="primary" variant="dark">
+            <Container>
+              <Navbar.Brand href="#home">
+                <img
+                  alt="site-logo"
+                  src="https://via.placeholder.com/30"
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top"
+                />{' '}
+                Meet App
+              </Navbar.Brand>
+              <Navbar.Text>
+                <p>
+                  Bringing you events easily since 2020..
+                </p>
+              </Navbar.Text>
+            </Container>
+          </Navbar>
+        </header>
+        { /*HEADER — END*/}
+
+        { /* OVERLAY MENU */}
         <div className={this.state.displayOverlay}>
           <section className='overlayHeader'>
             <h1> Welcome to Meet! The Serverless Function, Cloud Computing, Application Build with React! </h1>
             <p>Jump right into the fun! <br /> For more information on how to get started. Visit the Meet GitHub</p>
             <a target='_blank' rel='noreferrer' href='https://github.com/webcodejunkie/meet'>Meet GitHub</a>
           </section>
+
           <section className='overlayCloseButton'>
             <div className='onExitButton' onClick={this.hideOverlay}>╳</div>
           </section>
         </div>
+        { /* OVERLAY MENU — END */}
+
+        { /* FILTER SEARCH */}
         <section className='text-input'>
           <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
           <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
         </section>
+        { /* FILTER SEARCH — END */}
+
+        { /* EVENTS */}
         <section className='eventListAll'>
           <EventList events={this.state.events} />
         </section>
+        { /* EVENTS — END */}
+
+        { /* FOOTER */}
+        <footer className='footerbar'>
+          <div>
+            <h6>Copyright @ MeetApp</h6>
+          </div>
+        </footer>
+        { /* FOOTER — END */}
       </Container>
     );
   }

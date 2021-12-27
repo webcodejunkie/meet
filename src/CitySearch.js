@@ -34,7 +34,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
-        <h4>Search for nearby cities</h4>
+        <h6>Search for nearby cities</h6>
         <Form.Control
           className="city"
           placeholder="search city"

@@ -18,14 +18,16 @@ class Event extends Component {
     const { isCollasped } = this.state
     const { event } = this.props;
     return (
-      <Card className="event">
+      <Card className='event'>
         <Card.Header>Event</Card.Header>
         <Card.Title>{event.location}</Card.Title>
         <Card.Text>{event.summary}</Card.Text>
+        <hr />
         {!isCollasped &&
           <div className={`${this.state.isCollasped ? 'hide' : 'show'}`}>
             <Card.Title>Description</Card.Title>
             <Card.Text className='event-description'>{event.description}</Card.Text>
+            <hr />
             <Card.Text>Created: <span>{event.created}</span></Card.Text>
           </div>
         }

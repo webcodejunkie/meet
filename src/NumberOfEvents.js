@@ -11,7 +11,7 @@ class NumberOfEvents extends Component {
 
     return (
       <div>
-        <h5>Filter Events</h5>
+        <h6>Filter Events</h6>
         <Form.Control
           type='number'
           value={this.props.numberOfEvents}
