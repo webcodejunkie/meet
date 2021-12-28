@@ -31,4 +31,4 @@ auth-server/.serverless
 auth-server/node_modules
 
 # enviroment variables
-config.json
+auth-server/config.json
