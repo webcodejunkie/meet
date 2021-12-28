@@ -1,3 +1,5 @@
+org: webcodejunkie
+app: auth-server
 service: auth-server
 
 frameworkVersion: '2'
