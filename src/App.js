@@ -68,12 +68,14 @@ class App extends Component {
     }
   }
 
+  // Function For Overlay Menu on Website Start
   hideOverlay = () => {
     this.setState({
       displayOverlay: 'hideOverlayInfo'
     });
   }
 
+  // Functions For Offcanvas Component
   handleClose = () => {
     this.setState({
       show: false,
@@ -131,11 +133,11 @@ class App extends Component {
         { /* FILTER SEARCH */}
         <section className='filtersTab'>
           <Button variant="info" onClick={this.handleShow}>
-            Filters
+            Search
           </Button>
           <Offcanvas show={this.state.show} onHide={this.handleClose}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Filters</Offcanvas.Title>
+              <Offcanvas.Title>Search</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
