@@ -1,11 +1,11 @@
 # Hello, and welcome to my application 'Meet' developed by me, webcodejunkie!
 
-Beginner Web Developer trying to make sense of what I learn
+You can find the live version on GH Pages, link is here — https://webcodejunkie.github.io/meet/
 
 # Here's a quick description on this project and what I aim for this application to provide.
 
 To build a serverless, progressive web application (PWA) with React using a
-test-driven development **(TDD) technique.** The application uses the Google
+test-driven development **(TDD) Test Driven Development ** & **(BDD) — Behavoir Driven Development ** The application uses the Google
 Calendar API to fetch upcoming events.
 
 ### Key Features:
@@ -39,5 +39,8 @@ that I know what events are organized in which city.
 ## This is what I'll be using in the development aspect
 
 * React
+* Jest, Cucumber, Puppeteer — Testing Frameworks
+* Atalus — Reporting on Web Vitals
 
-## Mock ups for how the application will work will be provided soon!
+# IDE
+Microsoft Visual Studio
