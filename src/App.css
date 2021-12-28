@@ -4,9 +4,14 @@ body {
   background: linear-gradient(360deg, #e7dada, #d2ced9cc);
 }
 
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
 p {
   font-family: 'Inter', sans-serif;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 100;
 }
 
@@ -29,12 +34,12 @@ ul {
   padding: 0;
 }
 
-.text-input {
+.filtersTab {
   width: 100%;
   text-align: center;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   color: white;
   padding: 1rem;
   align-items: center;
@@ -46,6 +51,10 @@ ul {
   width: 40%;
   text-align: center;
   padding: 2rem;
+}
+
+.EventList {
+  padding: 0;
 }
 
 .event {
@@ -60,7 +69,7 @@ ul {
 .overlayInfo {
   background: #000000c2;
   width: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   height: 100%;
   color: white;
@@ -114,6 +123,14 @@ ul {
 
 .header {
   width: 100%;
+}
+
+.navbarHeaderText {
+  font-size: 16px;
+}
+
+.Alert {
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 992px) {

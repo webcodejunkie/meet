@@ -22,12 +22,15 @@ class Event extends Component {
         <Card.Header>Event</Card.Header>
         <Card.Title>{event.location}</Card.Title>
         <Card.Text>{event.summary}</Card.Text>
-        <hr />
         {!isCollasped &&
           <div className={`${this.state.isCollasped ? 'hide' : 'show'}`}>
-            <Card.Title>Description</Card.Title>
+            <Card.Header>Description</Card.Header>
             <Card.Text className='event-description'>{event.description}</Card.Text>
-            <hr />
+            <div>
+              <Card.Header>Creator</Card.Header>
+              <Card.Title>{event.creator.email}</Card.Title>
+            </div>
+            <Card.Header>Created</Card.Header>
             <Card.Text>Created: <span>{event.created}</span></Card.Text>
           </div>
         }

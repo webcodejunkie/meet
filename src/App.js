@@ -8,7 +8,9 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 
-import { Container, Navbar } from 'react-bootstrap';
+import { Container, Navbar, Offcanvas, Button } from 'react-bootstrap';
+
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   state = {
@@ -17,6 +19,7 @@ class App extends Component {
     numberOfEvents: 32,
     currentLocation: 'all',
     displayOverlay: 'overlayInfo',
+    show: false,
   }
 
   componentDidMount() {
@@ -71,26 +74,38 @@ class App extends Component {
     });
   }
 
+  handleClose = () => {
+    this.setState({
+      show: false,
+    });
+  }
+
+  handleShow = () => {
+    this.setState({
+      show: true,
+    });
+  }
+
 
   render() {
     return (
       <Container fluid className='d-flex app'>
         { /*HEADER*/}
         <header className='header'>
-          <Navbar bg="primary" variant="dark">
+          <Navbar bg='primary' variant='dark'>
             <Container>
-              <Navbar.Brand href="#home">
+              <Navbar.Brand href='#home' id='home'>
                 <img
-                  alt="site-logo"
-                  src="https://via.placeholder.com/30"
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
+                  alt='site-logo'
+                  src='https://via.placeholder.com/30'
+                  width='30'
+                  height='30'
+                  className='d-inline-block align-top'
                 />{' '}
                 Meet App
               </Navbar.Brand>
               <Navbar.Text>
-                <p>
+                <p className='navbarHeaderText'>
                   Bringing you events easily since 2020..
                 </p>
               </Navbar.Text>
@@ -104,7 +119,7 @@ class App extends Component {
           <section className='overlayHeader'>
             <h1> Welcome to Meet! The Serverless Function, Cloud Computing, Application Build with React! </h1>
             <p>Jump right into the fun! <br /> For more information on how to get started. Visit the Meet GitHub</p>
-            <a target='_blank' rel='noreferrer' href='https://github.com/webcodejunkie/meet'>Meet GitHub</a>
+            <a target='_blank' rel='author' href='https://github.com/webcodejunkie/meet'>Meet GitHub</a>
           </section>
 
           <section className='overlayCloseButton'>
@@ -114,15 +129,30 @@ class App extends Component {
         { /* OVERLAY MENU — END */}
 
         { /* FILTER SEARCH */}
-        <section className='text-input'>
-          <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
-          <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
+        <section className='filtersTab'>
+          <Button variant="info" onClick={this.handleShow}>
+            Filters
+          </Button>
+          <Offcanvas show={this.state.show} onHide={this.handleClose}>
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>Filters</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
+              <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
+            </Offcanvas.Body>
+          </Offcanvas>
         </section>
         { /* FILTER SEARCH — END */}
 
         { /* EVENTS */}
         <section className='eventListAll'>
           <EventList events={this.state.events} />
+        </section>
+        <section>
+          <div>
+            <a href='#home'>↑ Back To The Top ↑</a>
+          </div>
         </section>
         { /* EVENTS — END */}
 
