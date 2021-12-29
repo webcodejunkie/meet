@@ -43,9 +43,13 @@ ul {
   padding: 1rem;
   align-items: center;
   background-color: #0D6ED7;
-  clip-path: polygon(0 0, 100% 0, 90% 100%, 50% 80%, 10% 100%);
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 50% 106%, 10% 100%);
   border-top: 2px solid #0d6e9d;
   height: 150px;
+}
+
+.findEventButton {
+  box-shadow: 1px 1px 17px;
 }
 
 .eventListAll {

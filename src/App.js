@@ -97,7 +97,7 @@ class App extends Component {
   handleClose = () => {
     this.setState({
       show: false,
-      successMessage: `We found you ${this.state.numberOfEvents} events in ${this.state.currentLocation}!`,
+      successMessage: `We found you ${(this.state.events).length} events in ${this.state.currentLocation}!`,
     });
   }
 
@@ -151,7 +151,7 @@ class App extends Component {
 
         { /* FILTER SEARCH */}
         <section className='filtersTab'>
-          <Button variant="light" onClick={this.handleShow}>
+          <Button className='findEventButton' variant="light" onClick={this.handleShow}>
             Find A Event
           </Button>
           <SuccessAlert text={this.state.successMessage} />
