@@ -5,7 +5,7 @@ You can find the live version on GH Pages, link is here — https://webcodejunki
 # Here's a quick description on this project and what I aim for this application to provide.
 
 To build a serverless, progressive web application (PWA) with React using a
-test-driven development **(TDD) Test Driven Development ** & **(BDD) — Behavoir Driven Development ** The application uses the Google
+test-driven development **(TDD) Test Driven Development** & **(BDD) — Behavoir Driven Development** The application uses the Google
 Calendar API to fetch upcoming events.
 
 ### Key Features:
