@@ -6,7 +6,6 @@ import './css/NumberOfEvents.css';
 
 class NumberOfEvents extends Component {
 
-
   render() {
 
     return (

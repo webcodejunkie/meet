@@ -7,6 +7,7 @@ import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import { ErrorAlert } from './Alert';
 
 import { Container, Navbar, Offcanvas, Button } from 'react-bootstrap';
 
@@ -20,6 +21,7 @@ class App extends Component {
     currentLocation: 'all',
     displayOverlay: 'overlayInfo',
     show: false,
+    errorText: '',
   }
 
   componentDidMount() {
@@ -65,6 +67,15 @@ class App extends Component {
         numberOfEvents: newEventNum
       });
       this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
+    }
+    if (newEventNum === 0 || newEventNum > 32) {
+      this.setState({
+        errorText: 'Please choose a number not less then 0.',
+      });
+    } else {
+      return this.setState({
+        errorText: ''
+      });
     }
   }
 
@@ -142,6 +153,7 @@ class App extends Component {
             <Offcanvas.Body>
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
               <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
+              <ErrorAlert text={this.state.errorText} />
             </Offcanvas.Body>
           </Offcanvas>
         </section>
