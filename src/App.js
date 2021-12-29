@@ -42,6 +42,12 @@ class App extends Component {
     this.mounted = false;
   }
 
+  updateEventsBack = async () => {
+    this.setState({
+      locations: 'all'
+    });
+  }
+
   updateEvents = async (location, numberOfEvents) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
@@ -107,7 +113,7 @@ class App extends Component {
         <header className='header'>
           <Navbar bg='primary' variant='dark'>
             <Container>
-              <Navbar.Brand href='#home' id='home'>
+              <Navbar.Brand href='#home' id='home' onClick={this.updateEventsBack}>
                 <img
                   alt='site-logo'
                   src='https://via.placeholder.com/30'
@@ -154,6 +160,7 @@ class App extends Component {
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
               <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
               <ErrorAlert text={this.state.errorText} />
+              <Button onClick={this.handleClose} >Search</Button>
             </Offcanvas.Body>
           </Offcanvas>
         </section>
