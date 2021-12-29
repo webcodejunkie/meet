@@ -95,15 +95,30 @@ class App extends Component {
 
   // Functions For Offcanvas Component
   handleClose = () => {
-    this.setState({
-      show: false,
-      successMessage: `We found you ${(this.state.events).length} events in ${this.state.currentLocation}!`,
-    });
+    if (this.state.currentLocation === 'all') {
+      this.setState({
+        show: false,
+        successMessage: 'Successfuly got you the full list, enjoy!'
+      });
+    } else {
+      this.setState({
+        show: false,
+        successMessage: `We found you ${(this.state.events).length} events in ${this.state.currentLocation}!`,
+      });
+    }
   }
 
   handleShow = () => {
     this.setState({
       show: true,
+    });
+  }
+
+  onResetList = () => {
+    this.setState({
+      currentLocation: 'all',
+      successMessage: '',
+      numberOfEvents: 32
     });
   }
 
@@ -115,7 +130,7 @@ class App extends Component {
         <header className='header'>
           <Navbar bg='primary' variant='dark'>
             <Container>
-              <Navbar.Brand href='#home' id='home' onClick={this.updateEventsBack}>
+              <Navbar.Brand href='#home' id='home' onClick={this.onResetList}>
                 <img
                   alt='site-logo'
                   src='https://via.placeholder.com/30'
