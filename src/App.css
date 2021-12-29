@@ -37,7 +37,7 @@ ul {
   width: 100%;
   text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   justify-content: center;
   color: white;
   padding: 1rem;
@@ -51,7 +51,7 @@ ul {
 .eventListAll {
   width: 40%;
   text-align: center;
-  padding: 2rem;
+  margin-top: 3rem;
 }
 
 .EventList {

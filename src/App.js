@@ -7,7 +7,7 @@ import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { ErrorAlert } from './Alert';
+import { ErrorAlert, SuccessAlert } from './Alert';
 
 import { Container, Navbar, Offcanvas, Button } from 'react-bootstrap';
 
@@ -22,6 +22,7 @@ class App extends Component {
     displayOverlay: 'overlayInfo',
     show: false,
     errorText: '',
+    successMessage: '',
   }
 
   componentDidMount() {
@@ -96,6 +97,7 @@ class App extends Component {
   handleClose = () => {
     this.setState({
       show: false,
+      successMessage: `We found you ${this.state.numberOfEvents} events in ${this.state.currentLocation}!`,
     });
   }
 
@@ -138,7 +140,7 @@ class App extends Component {
           <section className='overlayHeader'>
             <h1> Welcome to Meet! The Serverless Function, Cloud Computing, Application Build with React! </h1>
             <p>Jump right into the fun! <br /> For more information on how to get started. Visit the Meet GitHub</p>
-            <a target='_blank' rel='author' href='https://github.com/webcodejunkie/meet'>Meet GitHub</a>
+            <a target='_blank' rel='noreferrer' href='https://github.com/webcodejunkie/meet'>Meet GitHub</a>
           </section>
 
           <section className='overlayCloseButton'>
@@ -149,9 +151,10 @@ class App extends Component {
 
         { /* FILTER SEARCH */}
         <section className='filtersTab'>
-          <Button variant="info" onClick={this.handleShow}>
-            Search
+          <Button variant="light" onClick={this.handleShow}>
+            Find A Event
           </Button>
+          <SuccessAlert text={this.state.successMessage} />
           <Offcanvas show={this.state.show} onHide={this.handleClose}>
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Search</Offcanvas.Title>
