@@ -22,7 +22,7 @@ class App extends Component {
     displayOverlay: 'overlayInfo',
     show: false,
     errorText: '',
-    successMessage: '',
+    successMessage: null,
   }
 
   componentDidMount() {
