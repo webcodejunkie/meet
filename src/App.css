@@ -45,6 +45,7 @@ ul {
   align-items: center;
   background-color: #444343;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
+  height: 150px;
 }
 
 .eventListAll {
