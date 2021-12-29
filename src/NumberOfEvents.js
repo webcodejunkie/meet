@@ -17,7 +17,6 @@ class NumberOfEvents extends Component {
           value={this.props.numberOfEvents}
           className='num-of-events'
           onChange={(e) => this.props.updateNumberOfEvents(e)}
-          placeholder='1-32'
         />
       </div>
     );
