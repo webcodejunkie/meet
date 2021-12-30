@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { extractLocations, getEvents } from './api';
+import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 
 import './css/animations.css';
 import './App.css';
 import './nprogress.css';
 
+import WelcomeScreen from './WelcomeScreen';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
@@ -20,6 +21,7 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     currentLocation: 'all',
+    showWelcomeScreen: undefined,
     displayOverlay: 'overlayInfo',
     show: false,
     errorText: '',
@@ -28,17 +30,23 @@ class App extends Component {
     filtersResetMessage: '',
   }
 
-  componentDidMount() {
-
-    this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events: events,
-          locations: extractLocations(events)
-        })
-      }
-    });
+  async componentDidMount() {
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      this.mounted = true;
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({
+            events: events,
+            locations: extractLocations(events)
+          });
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -120,10 +128,11 @@ class App extends Component {
     });
   }
 
-
   render() {
+    if (this.state.showWelcomeScreen === undefined) return <div className='app' />
     return (
       <Container fluid className='d-flex app'>
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         { /*HEADER*/}
         <header className='header'>
           <Navbar bg='primary' variant='dark'>
