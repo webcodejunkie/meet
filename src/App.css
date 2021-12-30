@@ -75,10 +75,10 @@ ul {
 .overlayHeader {
   transition-duration: .5s;
   width: 50%;
-  text-align: center;
+  text-align: start;
   position: absolute;
-  right: 25%;
-  bottom: 40%;
+  right: 43%;
+  bottom: 50%;
 }
 
 .overlayCloseButton {

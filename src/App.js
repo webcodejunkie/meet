@@ -161,7 +161,7 @@ class App extends Component {
         { /* OVERLAY MENU */}
         <div className={this.state.displayOverlay}>
           <section className='overlayHeader'>
-            <h1> Welcome to Meet! The Serverless Function, Cloud Computing, Application Build with React! </h1>
+            <h1>The Serverless Function, Cloud Computing, Application Build with React! </h1>
             <p>Jump right into the fun! <br /> For more information on how to get started. Visit the Meet GitHub</p>
             <a target='_blank' rel='noreferrer' href='https://github.com/webcodejunkie/meet'>Meet GitHub</a>
           </section>
