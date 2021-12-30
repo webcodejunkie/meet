@@ -134,7 +134,6 @@ class App extends Component {
     if (this.state.showWelcomeScreen === undefined) return <div className='app' />
     return (
       <Container fluid className='d-flex app'>
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         { /*HEADER*/}
         <header className='header'>
           <Navbar bg='primary' variant='dark'>
@@ -213,6 +212,7 @@ class App extends Component {
           </div>
         </footer>
         { /* FOOTER — END */}
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </Container>
     );
   }
