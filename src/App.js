@@ -103,7 +103,7 @@ class App extends Component {
     } else {
       this.setState({
         show: false,
-        successMessage: `We found you events in ${this.state.currentLocation}!`,
+        successMessage: `We found you ${(this.state.events).length} events in ${this.state.currentLocation}!`,
       });
     }
   }
