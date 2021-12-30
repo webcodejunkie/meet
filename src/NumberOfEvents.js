@@ -9,7 +9,7 @@ class NumberOfEvents extends Component {
   render() {
 
     return (
-      <div>
+      <div className='NumberOfEvents'>
         <h6>Filter Events</h6>
         <Form.Control
           type='number'

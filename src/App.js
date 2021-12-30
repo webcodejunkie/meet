@@ -185,8 +185,8 @@ class App extends Component {
         { /* FILTER SEARCH — END */}
 
         { /* EVENTS */}
+        {!navigator.onLine ? (<WarningAlert text='Oh no! You are offline :(' />) : (<WarningAlert text='' />)}
         <section className='eventListAll'>
-          {!navigator.onLine ? (<WarningAlert text='Oops.. You are offline!' />) : (<WarningAlert text='' />)}
           <EventList events={this.state.events} />
         </section>
         { /* EVENTS — END */}

@@ -99,20 +99,19 @@ ul {
 .sidebarMenu {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
+  align-items: stretch;
 }
 
 .footerbar {
   background-color: #0070e9;
   width: 100%;
-  height: 100px;
-  text-align: center;
-  color: white;
+  height: 80px;
   display: flex;
+  color: #fff;
   align-items: center;
   justify-content: center;
-  clip-path: polygon(50% 0, 100% 40%, 100% 100%, 0 100%, 0 40%);
+  clip-path: polygon(50% 0,100% 40%,100% 100%,0 100%,0 40%);
   z-index: -1;
   position: fixed;
   bottom: 0;
