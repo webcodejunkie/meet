@@ -52,9 +52,9 @@ ul {
   padding: 1rem;
   align-items: center;
   background-color: #0D6ED7;
-  clip-path: polygon(0 0,100% 0,60% 100%,50% 106%,40% 100%);
+  clip-path: polygon(0 0,100% 0,70% 100%,50% 106%,30% 100%);
   border-top: 2px solid #0d6e9d;
-  height: 150px;
+  height: 95px;
 }
 
 .overlayInfo {

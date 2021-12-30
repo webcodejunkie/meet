@@ -33,6 +33,7 @@ class App extends Component {
   async componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem('access_token');
+    console.log(accessToken);
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     console.log(isTokenValid);
     const searchParams = new URLSearchParams(window.location.search);
