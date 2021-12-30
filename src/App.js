@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { extractLocations, getEvents } from './api';
 
+import './css/animations.css';
 import './App.css';
 import './nprogress.css';
 
@@ -23,6 +24,7 @@ class App extends Component {
     show: false,
     errorText: '',
     successMessage: null,
+    offlineList: null,
   }
 
   componentDidMount() {
@@ -34,7 +36,7 @@ class App extends Component {
         this.setState({
           events: events.slice(0, numberOfEvents),
           locations: extractLocations(events)
-        });
+        })
       }
     });
   }
@@ -130,7 +132,7 @@ class App extends Component {
         <header className='header'>
           <Navbar bg='primary' variant='dark'>
             <Container>
-              <Navbar.Brand href='#home' id='home' onClick={this.onResetList}>
+              <Navbar.Brand href='#home' onClick={this.onResetList}>
                 <img
                   alt='site-logo'
                   src='https://via.placeholder.com/30'
@@ -188,13 +190,12 @@ class App extends Component {
         <section className='eventListAll'>
           <EventList events={this.state.events} />
         </section>
-        <section>
-          <div>
-            <a href='#home'>↑ Back To The Top ↑</a>
-          </div>
-        </section>
         { /* EVENTS — END */}
 
+        <div className='movingBallOne ballOne'></div>
+        <div className='movingBallTwo ballTwo'></div>
+        <div className='movingBallThree ballThree'></div>
+        <div className='movingBallFour ballFour'></div>
         { /* FOOTER */}
         <footer className='footerbar'>
           <div>

@@ -1,0 +1,39 @@
+.ballOne {
+  animation-name: ballMoving;
+  animation-duration: 15s;
+  animation-delay: 5;
+  animation-iteration-count: infinite;
+}
+
+.ballTwo {
+  animation-name: ballMoving;
+  animation-duration: 12s;
+  animation-delay: 2;
+  animation-iteration-count: infinite;
+}
+
+.ballThree {
+  animation-name: ballMoving;
+  animation-delay: 10;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+}
+
+.ballFour {
+  animation-name: ballMoving;
+  animation-delay: 20;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes ballMoving {
+  from {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(-850px) rotate(360deg);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,97 @@
+.findEventButton {
+  box-shadow: 1px 1px 17px;
+}
+
+.eventListAll {
+  width: 75%;
+  text-align: center;
+  overflow-y: scroll;
+  height: 420px;
+  box-shadow: 0px 0px 38px;
+}
+
+.EventList {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+}
+
+.event {
+  box-shadow: 10px 12px 36px;
+}
+
+.event-description {
+  padding: 20px;
+  border-bottom: 4px solid white;
+}
+
+.hide-details {
+  background-color: #f92020 !important;
+  border-color: #f92020 !important;
+}
+
+.show {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  background-color: whitesmoke;
+  top: 0;
+  z-index: 4;
+}
+
+.eventBox {
+  z-index: 3;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.box1 {
+  display: flex;
+  font-size: 26px;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #007bff;
+  color: white;
+  padding: 4rem;
+}
+
+.box2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 26px;
+  background-color: #4a4242;
+  color: white;
+  padding: 4rem;
+}
+
+.box3 {
+  display: flex;
+  justify-content: space-around;
+  font-size: 26px;
+  background-color: whitesmoke;
+}
+
+.eventButton {
+  position: fixed;
+  right: 17px;
+  background-color: transparent !important;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  border-color: transparent !important;
+  transition-duration: 1s;
+}
+
+.eventButton:hover {
+  color: red;
+  transform: scale(1.4);
+  transition-duration: 1s;
+}
+
+.event-creator {
+  border-bottom: 4px solid white;
+}

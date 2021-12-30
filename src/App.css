@@ -8,6 +8,11 @@ a {
   text-decoration: none !important;
 }
 
+hr {
+  width: 50%;
+  margin: 0 ;
+}
+
 p {
   font-family: 'Inter', sans-serif;
   font-size: 17px;
@@ -46,34 +51,6 @@ ul {
   clip-path: polygon(0 0, 100% 0, 90% 100%, 50% 106%, 10% 100%);
   border-top: 2px solid #0d6e9d;
   height: 150px;
-}
-
-.findEventButton {
-  box-shadow: 1px 1px 17px;
-}
-
-.eventListAll {
-  width: 40%;
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.EventList {
-  padding: 0;
-}
-
-.event {
-  margin-bottom: 40px;
-  box-shadow: 10px 12px 36px;
-}
-
-.event-description {
-  padding: 20px;
-}
-
-.hide-details {
-  background-color: #f92020 !important;
-  border-color: #f92020 !important;
 }
 
 .overlayInfo {
@@ -129,6 +106,9 @@ ul {
   align-items: center;
   justify-content: center;
   clip-path: polygon(50% 0, 100% 40%, 100% 100%, 0 100%, 0 40%);
+  z-index: -1;
+  position: fixed;
+  bottom: 0;
 }
 
 .header {
@@ -147,16 +127,73 @@ ul {
   font-size: 16px;
 }
 
+.movingBallOne {
+  background: linear-gradient(18deg, #0070e9, #c103ff);
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 6%;
+  bottom: -5%;
+  z-index: -1;
+}
+
+.movingBallTwo {
+  background: linear-gradient(18deg, #0070e9, #c103ff);
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 40%;
+  bottom: -5%;
+  z-index: -1;
+}
+
+.movingBallThree {
+  background: linear-gradient(18deg, #0070e9, #c103ff);
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 24%;
+  bottom: -5%;
+  z-index: -1;
+}
+
+.movingBallFour {
+  background: linear-gradient(18deg, #0070e9, #c103ff);
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 75%;
+  bottom: -5%;
+  z-index: -1;
+}
+
 @media only screen and (max-width: 992px) {
 
   .eventListAll {
-    width: 100%;
+    width: 100% !important;
     z-index: 0;
   }
   
   .EventList {
-    position: relative;
-    top: 20%;
+    grid-template-columns: 1fr !important;
+  }
+
+  .eventBox {
+    grid-template-columns: 1fr !important;
+  }
+
+  .box1 {
+    font-size: 18px !important;
+    padding: 2rem !important;
+  }
+
+  .box2 {
+    font-size: 18px !important;
+    padding: 2rem !important;
+  }
+
+  .box3{
+    font-size: 18px !important;
   }
 
   .overlayHeader {
