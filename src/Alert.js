@@ -11,6 +11,9 @@ class Alert extends Component {
     return {
       color: this.color,
       fontSize: '16px',
+      margin: '0',
+      padding: '10px',
+      transitionDuration: '2s',
     };
   }
 
@@ -41,10 +44,18 @@ class ErrorAlert extends Alert {
 class SuccessAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = '#1bff00';
+    this.color = '#31c900';
+  }
+}
+
+class WarningAlert extends Alert {
+  constructor(props) {
+    super(props);
+    this.color = 'yellow';
   }
 }
 
 export { InfoAlert };
 export { ErrorAlert };
 export { SuccessAlert };
+export { WarningAlert }

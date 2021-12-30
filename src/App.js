@@ -8,7 +8,7 @@ import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { ErrorAlert, SuccessAlert } from './Alert';
+import { ErrorAlert, SuccessAlert, WarningAlert } from './Alert';
 
 import { Container, Navbar, Offcanvas, Button } from 'react-bootstrap';
 
@@ -23,8 +23,9 @@ class App extends Component {
     displayOverlay: 'overlayInfo',
     show: false,
     errorText: '',
-    successMessage: null,
-    offlineList: null,
+    successMessage: '',
+    offlineList: '',
+    filtersResetMessage: '',
   }
 
   componentDidMount() {
@@ -50,7 +51,7 @@ class App extends Component {
     });
   }
 
-  updateEvents = async (location, numberOfEvents) => {
+  updateEvents = async (location) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
         events :
@@ -96,17 +97,11 @@ class App extends Component {
 
   // Functions For Offcanvas Component
   handleClose = () => {
-    if (this.state.currentLocation === 'all') {
-      this.setState({
-        show: false,
-        successMessage: 'Successfuly got you the full list, enjoy!'
-      });
-    } else {
-      this.setState({
-        show: false,
-        successMessage: `We found you ${(this.state.events).length} events in ${this.state.currentLocation}!`,
-      });
-    }
+    this.setState({
+      show: false,
+      successMessage: `We found you ${(this.state.events).length} events in ${this.state.currentLocation}!`,
+      filtersResetMessage: '',
+    });
   }
 
   handleShow = () => {
@@ -119,7 +114,9 @@ class App extends Component {
     this.setState({
       currentLocation: 'all',
       successMessage: '',
-      numberOfEvents: 32
+      numberOfEvents: 32,
+      filtersResetMessage: 'Filters Reset!',
+      errorText: '',
     });
   }
 
@@ -175,11 +172,13 @@ class App extends Component {
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Search</Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body>
+            <Offcanvas.Body className='sidebarMenu'>
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
               <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
               <ErrorAlert text={this.state.errorText} />
               <Button onClick={this.handleClose} >Search</Button>
+              <SuccessAlert text={this.state.filtersResetMessage} />
+              <Button onClick={this.onResetList} variant='warning'>Reset Filters</Button>
             </Offcanvas.Body>
           </Offcanvas>
         </section>
@@ -187,6 +186,7 @@ class App extends Component {
 
         { /* EVENTS */}
         <section className='eventListAll'>
+          {!navigator.onLine ? (<WarningAlert text='Oops.. You are offline!' />) : (<WarningAlert text='' />)}
           <EventList events={this.state.events} />
         </section>
         { /* EVENTS — END */}
