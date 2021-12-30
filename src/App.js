@@ -37,7 +37,6 @@ class App extends Component {
     const code = searchParams.get('code');
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
     if ((code || isTokenValid) && this.mounted) {
-      this.mounted = true;
       getEvents().then((events) => {
         if (this.mounted) {
           this.setState({
@@ -129,7 +128,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className='app' />
+    if (this.state.showWelcomeScreen === undefined) return <div className='App' />
     return (
       <Container fluid className='d-flex app'>
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />

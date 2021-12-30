@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300&family=Inter:wght@300&display=swap');
 
+html {
+  height: 100%;
+}
+
 body {
   background: linear-gradient(360deg, #ffffff, #002554cc);
 }
