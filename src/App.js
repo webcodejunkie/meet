@@ -128,7 +128,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className='App' />
+    if (this.state.showWelcomeScreen === undefined) return <div className='app' />
     return (
       <Container fluid className='d-flex app'>
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
