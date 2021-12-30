@@ -111,7 +111,7 @@ ul {
   color: #fff;
   align-items: center;
   justify-content: center;
-  clip-path: polygon(50% 0,100% 40%,100% 100%,0 100%,0 40%);
+  clip-path: polygon(0 0,100% 0,60% 100%,50% 106%,40% 100%);
   z-index: -1;
   position: fixed;
   bottom: 0;
