@@ -28,13 +28,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { numberOfEvents } = this.state;
 
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
-          events: events.slice(0, numberOfEvents),
+          events: events,
           locations: extractLocations(events)
         })
       }

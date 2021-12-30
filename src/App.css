@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300&family=Inter:wght@300&display=swap');
 
 body {
-  background: linear-gradient(360deg, #e7dada, #d2ced9cc);
+  background: linear-gradient(360deg, #ffffff, #002554cc);
 }
 
 a {
@@ -133,7 +133,7 @@ ul {
   height: 100px;
   position: absolute;
   left: 6%;
-  bottom: -5%;
+  bottom: 0%;
   z-index: -1;
   overflow: hidden;
 }
@@ -144,7 +144,7 @@ ul {
   height: 100px;
   position: absolute;
   left: 40%;
-  bottom: -5%;
+  bottom: 0%;
   z-index: -1;
   overflow: hidden;
 }
@@ -155,7 +155,7 @@ ul {
   height: 100px;
   position: absolute;
   left: 24%;
-  bottom: -5%;
+  bottom: 0%;
   z-index: -1;
   overflow: hidden;
 }
@@ -166,7 +166,7 @@ ul {
   height: 100px;
   position: absolute;
   left: 60%;
-  bottom: -5%;
+  bottom: 0%;
   z-index: -1;
   overflow: hidden;
 }

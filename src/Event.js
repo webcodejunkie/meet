@@ -26,7 +26,7 @@ class Event extends Component {
         <Card.Title>{event.location}</Card.Title>
         <Card.Text>{event.summary}</Card.Text>
         {!isCollasped &&
-          <div className={`${this.state.isCollasped ? 'hide animate__animated animate__fadeOut' : 'show animate__animated animate__fadeIn'}`}>
+          <div className={`${this.state.isCollasped ? 'hide animate__animated animate__fadeOut' : 'show animate__animated animate__fadeInUpBig'}`}>
             <div className='eventBox'>
               <div className='box1'>
                 <div className='event-description'>Description</div>
