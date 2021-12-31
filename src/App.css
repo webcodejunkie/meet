@@ -37,16 +37,16 @@ ul {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: gainsboro;
+  background: transparent;
   border-radius: 5px;
 }
     
 ::-webkit-scrollbar-thumb {
-  background: rgb(0, 0, 0);
+  background: #0982ff;;
   border-radius: 5px;
 }
     
