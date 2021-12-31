@@ -37,16 +37,6 @@
   z-index: 4;
 }
 
-.event {
-  transform:translateX(0);
-  transition-duration: 1s;
-}
-
-.event:hover {
-  transform:translateX(2px);
-  transition-duration: 1s;
-}
-
 .eventBox {
   z-index: 3;
   height: 100%;
