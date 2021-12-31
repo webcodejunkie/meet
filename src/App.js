@@ -194,9 +194,13 @@ class App extends Component {
 
         { /* EVENTS */}
         {!navigator.onLine ? (<WarningAlert text='Oh no! You are offline :(' />) : (<WarningAlert text='' />)}
-        <section className='eventListAll'>
-          <EventList events={this.state.events} />
-        </section>
+        {await getEvents() ? (<Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>)
+          :
+          (
+            <section className='eventListAll'>
+              <EventList events={this.state.events} />
+            </section>
+          )}
         { /* EVENTS — END */}
 
         <div className='movingBallOne ballOne'></div>
