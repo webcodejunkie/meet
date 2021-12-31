@@ -37,6 +37,16 @@ class App extends Component {
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({
+            events: events,
+            locations: extractLocations(events)
+          });
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -184,13 +194,9 @@ class App extends Component {
 
         { /* EVENTS */}
         {!navigator.onLine ? (<WarningAlert text='Oh no! You are offline :(' />) : (<WarningAlert text='' />)}
-        {getEvents() ? (<Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>)
-          :
-          (
-            <section className='eventListAll'>
-              <EventList events={this.state.events} />
-            </section>
-          )}
+        <section className='eventListAll'>
+          <EventList events={this.state.events} />
+        </section>
         { /* EVENTS — END */}
 
         <div className='movingBallOne ballOne'></div>
