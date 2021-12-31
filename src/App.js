@@ -172,10 +172,12 @@ class App extends Component {
 
         { /* FILTER SEARCH */}
         <section className='filtersTab'>
-          <Button className='findEventButton' variant="light" onClick={this.handleShow}>
-            Find A Event
-          </Button>
+          <Container className='flex-row justify-content-around filterButtons'>
+            <button className='eventButtons' onClick={this.handleShow}>Find A Event</button>
+            <button className='eventButtons' onClick={this.onResetList}>Reset Filters</button>
+          </Container>
           <SuccessAlert text={this.state.successMessage} />
+          <SuccessAlert text={this.state.filtersResetMessage} />
           <Offcanvas show={this.state.show} onHide={this.handleClose}>
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Search</Offcanvas.Title>
@@ -185,8 +187,6 @@ class App extends Component {
               <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
               <ErrorAlert text={this.state.errorText} />
               <Button onClick={this.handleClose} >Search</Button>
-              <SuccessAlert text={this.state.filtersResetMessage} />
-              <Button onClick={this.onResetList} variant='warning'>Reset Filters</Button>
             </Offcanvas.Body>
           </Offcanvas>
         </section>

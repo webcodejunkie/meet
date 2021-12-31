@@ -1,5 +1,17 @@
-.findEventButton {
-  box-shadow: 1px 1px 17px;
+.eventButtons {
+  border-radius: 15px;
+  padding: 6px;
+  outline: 0;
+  border: 1px solid transparent;
+  color: rgb(0, 0, 0);
+  background-color: #ebeef2;
+  transition-duration: .5s;
+}
+
+.eventButtons:hover {
+  opacity: .5;
+  transition-duration: .5s;
+  border: 1px solid rgb(61, 61, 61);
 }
 
 .eventListAll {
