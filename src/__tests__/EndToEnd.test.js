@@ -1,9 +1,9 @@
 import puppeteer from 'puppeteer';
 
 describe('show/hide an event details', () => {
+  jest.setTimeout(50000);
   let browser;
   let page;
-  jest.setTimeout(30000);
   beforeAll(async () => {
     browser = await puppeteer.launch({
       headless: true,
@@ -11,7 +11,7 @@ describe('show/hide an event details', () => {
       ignoreDefaultArgs: ['--disable-extensions']
     });
     page = await browser.newPage();
-    await page.goto('http://localhost:3000/');
+    await page.goto('https://webcodejunkie.github.io/meet/');
     await page.waitForSelector('.event');
   });
 

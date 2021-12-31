@@ -26,7 +26,7 @@ defineFeature(feature, test => {
     let AppWrapper;
     AppWrapper = mount(<App />);
     given('The input to change number of events is present', () => {
-      expect(AppWrapper.find('.num-of-events .form-control')).toHaveLength(1);
+      expect(AppWrapper.find('.form-control .num-of-events')).toHaveLength(1);
     });
 
     when('Users inputs desired amount of events to be shown', () => {
