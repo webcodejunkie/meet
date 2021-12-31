@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300&family=Inter:wght@300&display=swap');
+
+.policyContainer {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Archivo', sans-serif;
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 100;
+}
