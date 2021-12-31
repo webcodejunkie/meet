@@ -60,16 +60,7 @@ ul {
 }
 
 .filtersTab {
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
-  color: white;
-  padding: 1rem;
-  align-items: center;
-  border-top: 2px solid #0d6e9d;
-  height: 95px;
+  height: 50px;
 }
 
 .overlayInfo {
@@ -98,8 +89,9 @@ ul {
 
 .overlayCloseButton {
   position: absolute;
-  right: 10%;
-  bottom: 94%;
+  right: 4%;
+  top: 2%;
+  font-size: 25px;
 }
 
 .onExitButton {

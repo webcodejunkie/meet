@@ -119,12 +119,18 @@ class App extends Component {
   }
 
   onResetList = () => {
-    this.setState({
-      currentLocation: 'all',
-      successMessage: '',
-      numberOfEvents: 32,
-      filtersResetMessage: 'Filters Reset!',
-      errorText: '',
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events: events,
+          locations: extractLocations(events),
+          currentLocation: 'all',
+          successMessage: '',
+          numberOfEvents: 32,
+          filtersResetMessage: 'Filters Reset!',
+          errorText: '',
+        });
+      }
     });
   }
 
@@ -172,24 +178,24 @@ class App extends Component {
 
         { /* FILTER SEARCH */}
         <section className='filtersTab'>
-          <Container className='flex-row justify-content-around filterButtons'>
-            <button className='eventButtons' onClick={this.handleShow}>Find A Event</button>
-            <button className='eventButtons' onClick={this.onResetList}>Reset Filters</button>
-          </Container>
           <SuccessAlert text={this.state.successMessage} />
           <SuccessAlert text={this.state.filtersResetMessage} />
-          <Offcanvas show={this.state.show} onHide={this.handleClose}>
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Search</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body className='sidebarMenu'>
-              <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
-              <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
-              <ErrorAlert text={this.state.errorText} />
-              <Button onClick={this.handleClose} >Search</Button>
-            </Offcanvas.Body>
-          </Offcanvas>
         </section>
+        <Container className='d-flex flex-row justify-content-around filterButtons'>
+          <button className='eventButtons' onClick={this.handleShow}>Find A Event</button>
+          <button className='eventButtons' onClick={this.onResetList}>Reset Filters</button>
+        </Container>
+        <Offcanvas show={this.state.show} onHide={this.handleClose}>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Search</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body className='sidebarMenu'>
+            <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
+            <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
+            <ErrorAlert text={this.state.errorText} />
+            <Button onClick={this.handleClose} >Search</Button>
+          </Offcanvas.Body>
+        </Offcanvas>
         { /* FILTER SEARCH — END */}
 
         { /* EVENTS */}

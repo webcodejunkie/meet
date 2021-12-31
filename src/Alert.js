@@ -12,7 +12,6 @@ class Alert extends Component {
       color: this.color,
       fontSize: '16px',
       margin: '0',
-      padding: '10px',
       transitionDuration: '2s',
     };
   }
