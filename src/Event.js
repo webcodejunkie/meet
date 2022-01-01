@@ -23,7 +23,7 @@ class Event extends Component {
     return (
       <div className='event'>
         <div className='eventHeader'>Event</div>
-        <div>{event.location}</div>
+        <div className='eventLocation'>{event.location}</div>
         <div>{event.summary}</div>
         {!isCollasped &&
           <div className={`${this.state.isCollasped ? 'hide animate__animated animate__fadeOut' : 'show animate__animated animate__fadeInUpBig'}`}>
