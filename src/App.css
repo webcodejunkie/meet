@@ -190,7 +190,6 @@ ul {
 @media only screen and (max-width: 992px) {
 
   .eventListAll {
-    width: 100% !important;
     z-index: 0;
   }
   

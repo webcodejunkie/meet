@@ -13,6 +13,7 @@ class Alert extends Component {
       fontSize: '16px',
       margin: '0',
       transitionDuration: '2s',
+      padding: '8px',
     };
   }
 

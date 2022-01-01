@@ -118,21 +118,28 @@ class App extends Component {
     });
   }
 
-  onResetList = () => {
+  onResetFilters = () => {
+    this.setState({
+      currentLocation: 'all',
+      successMessage: '',
+      numberOfEvents: 32,
+      filtersResetMessage: 'Filters Reset!',
+      errorText: '',
+    });
+  }
+
+  onResetEvents = () => {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
           events: events,
           locations: extractLocations(events),
-          currentLocation: 'all',
-          successMessage: '',
-          numberOfEvents: 32,
-          filtersResetMessage: 'Filters Reset!',
-          errorText: '',
+          successMessage: 'Got you the full list of events!'
         });
       }
     });
   }
+
 
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div className='app' />
@@ -179,11 +186,11 @@ class App extends Component {
         { /* FILTER SEARCH */}
         <section className='filtersTab'>
           <SuccessAlert text={this.state.successMessage} />
-          <SuccessAlert text={this.state.filtersResetMessage} />
         </section>
         <Container className='d-flex flex-row justify-content-around filterButtons'>
           <button className='eventButtons' onClick={this.handleShow}>Find A Event</button>
-          <button className='eventButtons' onClick={this.onResetList}>Reset Filters</button>
+          <button className='eventButtons' onClick={this.onResetEvents}>All Events</button>
+          <button className='eventButtons' onClick={this.onResetEvents}></button>
         </Container>
         <Offcanvas show={this.state.show} onHide={this.handleClose}>
           <Offcanvas.Header closeButton>
@@ -193,7 +200,9 @@ class App extends Component {
             <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
             <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
             <ErrorAlert text={this.state.errorText} />
-            <Button onClick={this.handleClose} >Search</Button>
+            <Button variant='warning' onClick={this.onResetFilters}>Reset Filters</Button>
+            <SuccessAlert text={this.state.filtersResetMessage} />
+            <Button onClick={this.handleClose}>Search</Button>
           </Offcanvas.Body>
         </Offcanvas>
         { /* FILTER SEARCH — END */}
