@@ -190,7 +190,6 @@ class App extends Component {
         <Container className='d-flex flex-row justify-content-around filterButtons'>
           <button className='eventButtons' onClick={this.handleShow}>Find A Event</button>
           <button className='eventButtons' onClick={this.onResetEvents}>All Events</button>
-          <button className='eventButtons' onClick={this.onResetEvents}></button>
         </Container>
         <Offcanvas show={this.state.show} onHide={this.handleClose}>
           <Offcanvas.Header closeButton>
