@@ -30,7 +30,7 @@ class App extends Component {
     filtersResetMessage: '',
   }
 
-  async componentDidMount() {
+  /* async componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem('access_token');
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
@@ -47,6 +47,16 @@ class App extends Component {
         }
       });
     }
+  }
+  */
+
+  componentDidMount() {
+    this.mounted = true;
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({ events, locations: extractLocations(events) });
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -142,7 +152,7 @@ class App extends Component {
 
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className='app' />
+    // if (this.state.showWelcomeScreen === undefined) return <div className='app' />
     return (
       <Container fluid className='d-flex app'>
         { /*HEADER*/}
@@ -188,7 +198,7 @@ class App extends Component {
           <SuccessAlert text={this.state.successMessage} />
         </section>
         <Container className='d-flex flex-row justify-content-around filterButtons'>
-          <button className='eventButtons' onClick={this.handleShow}>Find A Event</button>
+          <button className='eventButtons findEventButton' onClick={this.handleShow}>Find A Event</button>
           <button className='eventButtons' onClick={this.onResetEvents}>All Events</button>
         </Container>
         <Offcanvas show={this.state.show} onHide={this.handleClose}>
@@ -224,7 +234,7 @@ class App extends Component {
           </div>
         </footer>
         { /* FOOTER — END */}
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+        {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> */}
       </Container>
     );
   }

@@ -30,7 +30,7 @@ defineFeature(feature, test => {
   test('User can expand an event to see its details', ({ given, when, then }) => {
     let EventWrapper;
     let event = mockData;
-    EventWrapper = shallow(<Event event={event} />);
+    EventWrapper = shallow(<Event event={event[0]} />);
     given('User sees button to click to show more details', () => {
       expect(EventWrapper.find('.show-details')).toHaveLength(1);
     });
@@ -50,18 +50,18 @@ defineFeature(feature, test => {
 
   test('User can collaspe an event to hide its details', ({ given, when, then }) => {
     let EventWrapper;
-    let event = mockData;
+    let event = mockData[0];
     EventWrapper = shallow(<Event event={event} />);
 
     given('User wants to hide the details of event', () => {
       EventWrapper.setState({
         isCollasped: false
       });
-      expect(EventWrapper.find('.hide-details')).toHaveLength(1);
+      expect(EventWrapper.find('.eventButton')).toHaveLength(1);
     });
 
     when('User clicks button to show less', () => {
-      EventWrapper.find('.hide-details').simulate('click');
+      EventWrapper.find('.eventButton').simulate('click');
     });
 
     then('Event details then collaspe', () => {

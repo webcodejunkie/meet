@@ -3,6 +3,7 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import { mount } from 'enzyme';
 
 import App from '../App';
+import NumberOfEvents from '../NumberOfEvents';
 
 const feature = loadFeature('./src/.features/specifyNumberOfEvents.feature');
 
@@ -26,7 +27,9 @@ defineFeature(feature, test => {
     let AppWrapper;
     AppWrapper = mount(<App />);
     given('The input to change number of events is present', () => {
-      expect(AppWrapper.find('.form-control .num-of-events')).toHaveLength(1);
+      AppWrapper.find('.findEventButton').simulate('click');
+      const NumberOfEventWrappers = AppWrapper.find(NumberOfEvents);
+      expect(NumberOfEventWrappers.find('.num-of-events').at(0)).toHaveLength(1);
     });
 
     when('Users inputs desired amount of events to be shown', () => {

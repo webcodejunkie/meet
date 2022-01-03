@@ -31,7 +31,7 @@ describe('<Event /> component', () => {
   });
 
   test('test if you click to return to default state to hide', () => {
-    EventWrapper.find(`${'.hide-details'}`).simulate('click');
+    EventWrapper.find(`${'.eventButton'}`).simulate('click');
     EventWrapper.setState({
       isCollasped: true
     });

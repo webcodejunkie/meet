@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './css/Event.css'
 import 'animate.css';
 
-import { Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 class Event extends Component {
 
@@ -21,10 +21,10 @@ class Event extends Component {
     const { isCollasped } = this.state
     const { event } = this.props;
     return (
-      <div className='event'>
-        <div className='eventHeader'>Event</div>
-        <div className='eventLocation'>{event.location}</div>
-        <div>{event.summary}</div>
+      <Card className='event'>
+        <Card.Header>Event</Card.Header>
+        <Card.Title>{event.location}</Card.Title>
+        <Card.Text>{event.summary}</Card.Text>
         {!isCollasped &&
           <div className={`${this.state.isCollasped ? 'hide animate__animated animate__fadeOut' : 'show animate__animated animate__fadeInUpBig'}`}>
             <div className='eventBox'>
@@ -45,10 +45,10 @@ class Event extends Component {
             </div>
           </div>
         }
-        <Button variant='primary' className={`${this.state.isCollasped ? 'show' : 'hide'}-details`} onClick={this.handleClick}>
+        <Button className={`${this.state.isCollasped ? 'show' : 'hide'}-details`} onClick={this.handleClick}>
           {isCollasped ? 'More About' : 'Close'}
         </Button>
-      </div>
+      </Card>
     );
   }
 }
