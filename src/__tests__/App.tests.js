@@ -35,12 +35,14 @@ describe('<App /> intergration', () => {
     const AppWrapper = mount(<App />);
     const AppLocationsState = AppWrapper.state('locations');
     expect(AppLocationsState).not.toEqual(undefined);
+    AppWrapper.find('.findEventButton').at(0).simulate('click');
     expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
     AppWrapper.unmount();
   });
 
   test('test list of events matching the city selected by the user', async () => {
     const AppWrapper = mount(<App />);
+    AppWrapper.find('.findEventButton').at(0).simulate('click');
     const CitySearchWrapper = AppWrapper.find(CitySearch);
     const locations = extractLocations(mockData);
     CitySearchWrapper.setState({ suggestions: locations });
