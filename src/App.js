@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 
 import './css/animations.css';
@@ -23,11 +24,22 @@ class App extends Component {
     currentLocation: 'all',
     showWelcomeScreen: undefined,
     displayOverlay: 'overlayInfo',
-    show: false,
+    showSearch: false,
+    showMetrics: false,
     errorText: '',
     successMessage: '',
     offlineList: '',
     filtersResetMessage: '',
+  }
+
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return { city, number };
+    })
+    return data;
   }
 
   async componentDidMount() {
@@ -72,7 +84,7 @@ class App extends Component {
       }
     });
   }
-
+  // update the number of events ultilzing the NumberOfEvents Component
   updateNumberOfEvents = async (e) => {
     const newEventNum = e.target.value ? parseInt(e.target.value) : 32;
     if (newEventNum < 1 || newEventNum > 32) {
@@ -103,21 +115,37 @@ class App extends Component {
     });
   }
 
-  // Functions For Offcanvas Component
-  handleClose = () => {
+  // Open metrics menu
+  handleShowMetrics = () => {
     this.setState({
-      show: false,
+      showMetrics: true,
+    });
+  }
+
+  // Close metrics menu
+  handleCloseMetrics = () => {
+    this.setState({
+      showMetrics: false,
+    });
+  }
+
+  // Close search sidebar menu
+  handleCloseSearch = () => {
+    this.setState({
+      showSearch: false,
       successMessage: `We found you ${(this.state.events).length} events in ${this.state.currentLocation}!`,
       filtersResetMessage: '',
     });
   }
 
-  handleShow = () => {
+  // Show search sidebar menu
+  handleShowSearch = () => {
     this.setState({
-      show: true,
+      showSearch: true,
     });
   }
 
+  // Reset Filters for searching events
   onResetFilters = () => {
     this.setState({
       currentLocation: 'all',
@@ -127,7 +155,7 @@ class App extends Component {
       errorText: '',
     });
   }
-
+  // Reset the number of events back to default 
   onResetEvents = () => {
     getEvents().then((events) => {
       if (this.mounted) {
@@ -145,6 +173,7 @@ class App extends Component {
     if (this.state.showWelcomeScreen === undefined) return <div className='app' />
     return (
       <Container fluid className='d-flex app'>
+
         { /*HEADER*/}
         <header className='header'>
           <Navbar bg='primary' variant='dark'>
@@ -187,11 +216,12 @@ class App extends Component {
         <section className='filtersTab'>
           <SuccessAlert text={this.state.successMessage} />
         </section>
-        <Container className='d-flex flex-row justify-content-around filterButtons'>
-          <button className='eventButtons findEventButton' onClick={this.handleShow}>Find A Event</button>
+        <Container className='d-flex flex-row justify-content-center filterButtons'>
+          <button className='eventButtons findEventButton' onClick={this.handleShowSearch}>Find A Event</button>
+          <button className='eventButtons' onClick={this.handleShowMetrics}>Metrics</button>
           <button className='eventButtons' onClick={this.onResetEvents}>All Events</button>
         </Container>
-        <Offcanvas show={this.state.show} onHide={this.handleClose}>
+        <Offcanvas show={this.state.showSearch} onHide={this.handleCloseSearch}>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Search</Offcanvas.Title>
           </Offcanvas.Header>
@@ -201,10 +231,31 @@ class App extends Component {
             <ErrorAlert text={this.state.errorText} />
             <Button variant='warning' onClick={this.onResetFilters}>Reset Filters</Button>
             <SuccessAlert text={this.state.filtersResetMessage} />
-            <Button onClick={this.handleClose}>Search</Button>
+            <Button onClick={this.handleCloseSearch}>Search</Button>
           </Offcanvas.Body>
         </Offcanvas>
         { /* FILTER SEARCH — END */}
+
+        { /* Metrics — Data Visualization */}
+
+        <Offcanvas show={this.state.showMetrics} onHide={this.handleCloseMetrics} placement='top'>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Metrics</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body className='d-flex justify-content-center'>
+            <ResponsiveContainer height={400}>
+              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20, }}>
+                <CartesianGrid />
+                <XAxis type="category" dataKey="city" name="stature" />
+                <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
+                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                <Scatter data={this.getData()} fill="#8884d8" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </Offcanvas.Body>
+        </Offcanvas>
+
+        { /* Metrics — Data Visualization — END */}
 
         { /* EVENTS */}
         {!navigator.onLine ? (<WarningAlert text='Oh no! You are offline :(' />) : (<WarningAlert text='' />)}

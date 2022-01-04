@@ -1,16 +1,16 @@
 .eventButtons {
-  border-radius: 15px;
-  padding: 6px;
+  padding: 12px;
   outline: 0;
   border: 1px solid transparent;
-  color: rgb(0, 0, 0);
-  background-color: #ebeef2;
+  color: rgb(255 255 255);
+  background-color: #0579dd;
   transition-duration: .5s;
+  border: 1px solid #0464b7;
 }
 
 .eventButtons:hover {
   transition-duration: .5s;
-  border: 1px solid rgb(61, 61, 61);
+  opacity: .6;
 }
 
 .eventListAll {
@@ -93,7 +93,6 @@
   font-size: 24px;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
 }
 
 
