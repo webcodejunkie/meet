@@ -11,6 +11,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { ErrorAlert, SuccessAlert, WarningAlert } from './Alert';
+import EventGenre from './EventGenre';
 
 import { Container, Navbar, Offcanvas, Button } from 'react-bootstrap';
 
@@ -243,15 +244,18 @@ class App extends Component {
             <Offcanvas.Title>Metrics</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body className='d-flex justify-content-center'>
-            <ResponsiveContainer height={400}>
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20, }}>
-                <CartesianGrid />
-                <XAxis type="category" dataKey="city" name="stature" />
-                <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
-                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                <Scatter data={this.getData()} fill="#8884d8" />
-              </ScatterChart>
-            </ResponsiveContainer>
+            <div className='data-vis-wrapper'>
+              <EventGenre events={this.state.events} />
+              <ResponsiveContainer height={400}>
+                <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20, }}>
+                  <CartesianGrid />
+                  <XAxis type="category" dataKey="city" name="stature" />
+                  <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
+                  <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                  <Scatter data={this.getData()} fill="#8884d8" />
+                </ScatterChart>
+              </ResponsiveContainer>
+            </div>
           </Offcanvas.Body>
         </Offcanvas>
 
