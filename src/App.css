@@ -191,6 +191,11 @@ ul {
   overflow: hidden;
 }
 
+.data-vis-wrapper {
+  width: 100%;
+  height: auto;
+}
+
 @media only screen and (max-width: 992px) {
 
   .eventListAll {

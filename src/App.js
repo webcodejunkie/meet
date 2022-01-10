@@ -29,7 +29,6 @@ class App extends Component {
     showMetrics: false,
     errorText: '',
     successMessage: '',
-    offlineList: '',
     filtersResetMessage: '',
   }
 
@@ -169,9 +168,10 @@ class App extends Component {
     });
   }
 
-
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className='app' />
+    const { events, locations, numberOfEvents, showWelcomeScreen, displayOverlay, showSearch, showMetrics, errorText, successMessage, filtersResetMessage } = this.state;
+
+    if (showWelcomeScreen === undefined) return <div className='app' />
     return (
       <Container fluid className='d-flex app'>
 
@@ -200,7 +200,7 @@ class App extends Component {
         { /*HEADER — END*/}
 
         { /* OVERLAY MENU */}
-        <div className={this.state.displayOverlay}>
+        <div className={displayOverlay}>
           <section className='overlayHeader'>
             <h1>The Serverless Function, Cloud Computing, Application Build with React! </h1>
             <p>Jump right into the fun! <br /> For more information on how to get started. Visit the Meet GitHub</p>
@@ -215,23 +215,23 @@ class App extends Component {
 
         { /* FILTER SEARCH */}
         <section className='filtersTab'>
-          <SuccessAlert text={this.state.successMessage} />
+          <SuccessAlert text={successMessage} />
         </section>
         <Container className='d-flex flex-row justify-content-center filterButtons'>
           <button className='eventButtons findEventButton' onClick={this.handleShowSearch}>Find A Event</button>
           <button className='eventButtons' onClick={this.handleShowMetrics}>Metrics</button>
           <button className='eventButtons' onClick={this.onResetEvents}>All Events</button>
         </Container>
-        <Offcanvas show={this.state.showSearch} onHide={this.handleCloseSearch}>
+        <Offcanvas show={showSearch} onHide={this.handleCloseSearch}>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Search</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body className='sidebarMenu'>
-            <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} events={this.state.events} />
-            <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents} />
-            <ErrorAlert text={this.state.errorText} />
+            <CitySearch locations={locations} updateEvents={this.updateEvents} events={events} />
+            <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} numberOfEvents={numberOfEvents} />
+            <ErrorAlert text={errorText} />
             <Button variant='warning' onClick={this.onResetFilters}>Reset Filters</Button>
-            <SuccessAlert text={this.state.filtersResetMessage} />
+            <SuccessAlert text={filtersResetMessage} />
             <Button onClick={this.handleCloseSearch}>Search</Button>
           </Offcanvas.Body>
         </Offcanvas>
@@ -239,13 +239,13 @@ class App extends Component {
 
         { /* Metrics — Data Visualization */}
 
-        <Offcanvas show={this.state.showMetrics} onHide={this.handleCloseMetrics} placement='top'>
+        <Offcanvas show={showMetrics} onHide={this.handleCloseMetrics} placement='top'>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Metrics</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body className='d-flex justify-content-center'>
             <div className='data-vis-wrapper'>
-              <EventGenre events={this.state.events} />
+              <h2>City Events Chart</h2>
               <ResponsiveContainer height={400}>
                 <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20, }}>
                   <CartesianGrid />
@@ -255,6 +255,8 @@ class App extends Component {
                   <Scatter data={this.getData()} fill="#8884d8" />
                 </ScatterChart>
               </ResponsiveContainer>
+              <h2>What's Popular?</h2>
+              <EventGenre events={events} />
             </div>
           </Offcanvas.Body>
         </Offcanvas>
@@ -264,7 +266,7 @@ class App extends Component {
         { /* EVENTS */}
         {!navigator.onLine ? (<WarningAlert text='Oh no! You are offline :(' />) : (<WarningAlert text='' />)}
         <section className='eventListAll'>
-          <EventList events={this.state.events} />
+          <EventList events={events} />
         </section>
         { /* EVENTS — END */}
 
@@ -279,7 +281,7 @@ class App extends Component {
           </div>
         </footer>
         { /* FOOTER — END */}
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+        <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </Container>
     );
   }
